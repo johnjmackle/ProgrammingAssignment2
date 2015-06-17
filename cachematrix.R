@@ -1,17 +1,16 @@
-## Put comments here that give an overall description of what your
-## functions do
+## https://github.com/johnjmackle/ProgrammingAssignment2.git
 
-## Write a short comment describing this function
+## makeCacheMatrix creates a matrix that is a list that gets and sets the value of the matrix and the inverse of the matrix
 
 makeCacheMatrix <- function(x = matrix()) {
- i <- NULL
+ m <- NULL
     set <- function(y) {
         x <<- y
-        i <<- NULL
+        m <<- NULL
     }
     get <- function() x
-    setinverse <- function(inverse) i <<- inverse
-    getinverse <- function() i
+    setinverse <- function(inverse) m <<- inverse
+    getinverse <- function() m
     list(
         set = set,
         get = get,
@@ -20,17 +19,17 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## cacheSolve gets the matrix of the inverse of makeCacheMatrix and skips the calculation if already completed. Prevents infinite loop.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-           i <- x$getinverse()
-    if(!is.null(i)) {
+           m <- x$getinverse()
+    if(!is.null(m)) {
         message("getting cached data")
-        return(i)
+        return(m)
     }
     data <- x$get()
-    i <- solve(data, ...)
-    x$setinverse(i)
-    i
+    m <- solve(data, ...)
+    x$setinverse(m)
+    m
 }
